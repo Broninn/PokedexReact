@@ -20,31 +20,19 @@ interface PokemonDetailsProps {
 export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
     const { name } = useParams();
     const [ selectedPokemonDetails, setSelectedPokemonDetails] = useState<PokemonDetail>()
-
     //Estado de verificação ao clicar em um pokemon, mostrar as informações da API
     useEffect(() => {
-    //   if (!name) return;
+      if (!name) return;
 
-    //   getPokemonDetails(name).then((response) => 
-    //   {
-    //     setSelectedPokemonDetails(response)
-    //     console.log(JSON.stringify(response))
-    //   }
+      getPokemonDetails(name).then((response) => 
+      {
+        setSelectedPokemonDetails(response)
+        console.log(JSON.stringify(response))
+      }
       
-    //   )
-    getPokemon()
+      )
       
     }, []);
-
-    const getPokemon = async () => {
-        try {
-            const data = await getPokemonDetails('pikachu');
-            console.log(data)
-            setSelectedPokemonDetails(data)
-        } catch (error) {
-            
-        }
-    }
     
     return (
       <div>
@@ -67,11 +55,13 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
         <Container maxWidth="md">
             <Box mt={2}>
                 {/* <p>{JSON.stringify(selectedPokemonDetails)}</p> */}
-                {/* {selectedPokemonDetails?.abilities ? (
-                <span>{selectedPokemonDetails?.abilities.map((pokemon,index) => {return ( <p>{pokemon.ability}</p>)})}</span>
-                ) : null} */}
-                {/* <p>{selectedPokemonDetails?.name}</p> */}
+               <img width="100%" height="auto" src={selectedPokemonDetails && selectedPokemonDetails.sprites.front_default} alt="" />
+               <p>{selectedPokemonDetails && selectedPokemonDetails.abilities.map((pokemon,index) => {return ( <p key={index}>{pokemon.ability.name}</p>)})}</p>
             </Box>
+            <Typography>
+              {selectedPokemonDetails && selectedPokemonDetails.name}
+            </Typography>            
+              {selectedPokemonDetails && selectedPokemonDetails.types.map((type) => <Typography>{type.type.name}</Typography>)}
         </Container>
       </div>
     );
