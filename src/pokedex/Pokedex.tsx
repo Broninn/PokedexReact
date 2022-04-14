@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import PokedexCard from './components/PokedexCard'
+import { PokemonDetail } from '../pokemon/interfaces/pokemonDetail';
 
 
 interface PokedexProps {
@@ -15,7 +16,7 @@ interface PokedexProps {
 }
 
 export const Pokedex: React.FC<PokedexProps> = () => {
-    const [pokemons, setPokemons] = useState<PokemonListInterface[]>([]);
+    const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonListInterface | undefined>(undefined)
 
     useEffect(() => {

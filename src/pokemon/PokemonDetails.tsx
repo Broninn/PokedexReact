@@ -56,12 +56,45 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             <Box mt={2}>
                 {/* <p>{JSON.stringify(selectedPokemonDetails)}</p> */}
                <img width="100%" height="auto" src={selectedPokemonDetails && selectedPokemonDetails.sprites.front_default} alt="" />
-               <p>{selectedPokemonDetails && selectedPokemonDetails.abilities.map((pokemon,index) => {return ( <p key={index}>{pokemon.ability.name}</p>)})}</p>
             </Box>
-            <Typography>
-              {selectedPokemonDetails && selectedPokemonDetails.name}
-            </Typography>            
-              {selectedPokemonDetails && selectedPokemonDetails.types.map((type) => <Typography>{type.type.name}</Typography>)}
+            <Typography variant='h2'>
+              {selectedPokemonDetails && selectedPokemonDetails.species.name}
+            </Typography>
+            <Box display="flex" flexDirection={'row'} >
+              <Typography>
+                Espécie:
+              </Typography>
+              <Typography>
+                {selectedPokemonDetails && selectedPokemonDetails.species.name}
+              </Typography>
+            </Box>
+            <Box display="flex" flexDirection={'row'} >
+              <Typography>
+                Altura:
+              </Typography>
+              <Typography>
+                {selectedPokemonDetails && selectedPokemonDetails.height}
+              </Typography>
+            </Box>
+            <Box display="flex" flexDirection={'row'} >
+              <Typography>
+                Peso:
+              </Typography>
+              <Typography>
+                {selectedPokemonDetails && selectedPokemonDetails.weight}
+              </Typography>
+            </Box>
+            <Box display="flex" flexDirection={'row'} >
+              <Typography>
+                Habilidades:
+              </Typography>
+              <Typography>
+                {selectedPokemonDetails && selectedPokemonDetails.abilities.map((pokemon,index) => {return ( <Typography key={index}>{pokemon.ability.name}</Typography>)})}
+              </Typography>
+            </Box>
+                {/* {selectedPokemonDetails && selectedPokemonDetails.types.map((type) => <Typography>{type.type.name}</Typography>)} */}
+                
+
         </Container>
       </div>
     );
