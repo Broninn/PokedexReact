@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { PokemonDetail } from './interfaces/pokemonDetail';
 import AppBar from '@mui/material/AppBar';
-import {Box, Grid, IconButton} from '@mui/material';
+import {Box, Button, Grid, IconButton} from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import { useParams } from 'react-router-dom';
 import { getPokemonDetails } from './services/getPokemonDetails';
-
-
+import { useNavigate } from 'react-router';
 
 interface PokemonDetailsProps {
 
 }
 
-
-
 export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
+    const navigate = useNavigate();
     const { name } = useParams();
     const [ selectedPokemonDetails, setSelectedPokemonDetails] = useState<PokemonDetail>()
     //Estado de verificação ao clicar em um pokemon, mostrar as informações da API
@@ -33,11 +31,18 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
       )
       
     }, []);
+
+    function handleClick() {
+      navigate('/')
+    }
     
     return (
       <div>
         <AppBar position="static">
             <Toolbar>
+              <Button onClick={handleClick} style={{color:"white" }}>
+                Voltar
+              </Button>
             <IconButton
                 size="large"
                 edge="start"
