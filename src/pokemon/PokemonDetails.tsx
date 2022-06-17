@@ -30,7 +30,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
           console.log(JSON.stringify(response))
         }
       )
-    }, []);
+    }, [name]);
 
     const addPokemonToFavorites = () => {
       if (!selectedPokemonDetails)
@@ -68,7 +68,6 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
                 <IconButton
                         size="large"
                         aria-label='show more'
-                        aria-aria-haspopup="true"
                         onClick={() => navigate('/favoritos')}
                         color='inherit'
                     >

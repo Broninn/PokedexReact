@@ -1,6 +1,5 @@
 import axios from "axios";
 import { PokemonDetail } from "../interfaces/pokemonDetail";
-import PokemonDetails from "../PokemonDetails";
 import { getPokemonDetails } from "./getPokemonDetails";
 
 export interface PokemonListInterface {
@@ -23,7 +22,7 @@ export async function listPokemons(): Promise<listPokemonsInterface> {
     const promiseArr = response.data.results.map(({ name }) => getPokemonDetails(name))
     const resultsPromise = await Promise.all(promiseArr)
     return {
-        ... response.data,
+        ...response.data,
         results: resultsPromise
     }
 }

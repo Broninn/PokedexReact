@@ -56,7 +56,6 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                             <IconButton
                                     size="large"
                                     aria-label='show more'
-                                    aria-aria-haspopup="true"
                                     onClick={() => navigate('/favoritos')}
                                     color='inherit'
                                 >
