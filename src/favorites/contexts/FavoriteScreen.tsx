@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from 'react-router-dom';
 import PokedexCard from '../../pokedex/components/PokedexCard';
 import { PokemonDetail } from '../../pokemon/interfaces/pokemonDetail';
 import { FavoriteContext } from './FavoriteContext';
@@ -17,7 +16,6 @@ interface FavoriteScreenProps {
 
 export const FavoriteScreen: React.FC<FavoriteScreenProps> = () => {
     const { favorites } = useContext(FavoriteContext);
-    const navigate = useNavigate();
     //const [selectedPokemon, setSelectedPokemon] = useState<PokemonListInterface | undefined>(undefined)
 
     return (

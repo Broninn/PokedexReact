@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import {BrowserRouter as Router} from "react-router-dom";
 import { FavoriteProvider } from './favorites/contexts/FavoriteContext';
 import Routes from './routes';
-import RoutesPoke from './routes';
 
 interface AppProps {
 
