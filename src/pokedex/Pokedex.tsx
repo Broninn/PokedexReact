@@ -73,7 +73,6 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                     <>
                         <Box mt={2}>
                             <Grid container spacing={2}>
-                                TESTE Deploy Firebase
                                 {pokemons.map((pokemon) => (
                                     <>
                                         <Grid item xs={6} lg={3}>
