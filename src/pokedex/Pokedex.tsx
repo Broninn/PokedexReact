@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { listPokemons, PokemonListInterface } from '../pokemon/services/listPokemons';
+import React, { useContext, useEffect, useState } from 'react';
+import { listPokemons } from '../pokemon/services/listPokemons';
 import AppBar from '@mui/material/AppBar';
-import {Box, CircularProgress, Grid, LinearProgress} from '@mui/material';
+import { Badge, Box, CircularProgress, Grid, LinearProgress} from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -10,20 +10,29 @@ import MenuIcon from '@mui/icons-material/Menu';
 import PokedexCard from './components/PokedexCard'
 import { PokemonDetail } from '../pokemon/interfaces/pokemonDetail';
 import { useQuery } from 'react-query';
+import { Favorite } from '@material-ui/icons';
+import { useNavigate } from 'react-router-dom';
+import { FavoriteContext } from '../favorites/contexts/FavoriteContext';
 
 interface PokedexProps {
 
 }
 
 export const Pokedex: React.FC<PokedexProps> = () => {
+    const { favorites } = useContext(FavoriteContext);
+    const navigate = useNavigate();
     const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
     //const [selectedPokemon, setSelectedPokemon] = useState<PokemonListInterface | undefined>(undefined)
     const { isLoading, isRefetching } = useQuery(`listPokemons`,listPokemons);
+
+    const favoritesCount = favorites.length;
 
     useEffect(() => {
         //Como verificar se a API está ok! axios.get('https://pokeapi.co/api/v2/pokemon').then((response) => console.log(response))
         listPokemons().then((response) => setPokemons(response.results))
     }, []);
+
+    
 
     return (
         <div>
@@ -42,6 +51,20 @@ export const Pokedex: React.FC<PokedexProps> = () => {
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             Pokedex
                         </Typography>
+                        <Box sx={{ flexGrow: 1 }}/>
+                        <Box sx={{ display: { xs: 'flex', md: 'flex'} }}>
+                            <IconButton
+                                    size="large"
+                                    aria-label='show more'
+                                    aria-aria-haspopup="true"
+                                    onClick={() => navigate('/favoritos')}
+                                    color='inherit'
+                                >
+                                <Badge badgeContent={favoritesCount} color="secondary">
+                                    <Favorite />
+                                </Badge>
+                            </IconButton>
+                        </Box>
                     </Toolbar>
                     {isRefetching && <LinearProgress variant='indeterminate' color='secondary'></LinearProgress>}
                 </AppBar>
